@@ -10,7 +10,9 @@ def inf(ur, _type):
     logme.debug(__name__+':inf')
     try:
         group = ur.find("div", "user-actions btn-group not-following ")
-        if group == None :
+        if group == None:
+            group = ur.find("div", "user-actions btn-group not-following")
+        if group == None:
             group = ur.find("div", "user-actions btn-group not-following protected")
     except Exception as e:
         print("Error: " + str(e))
@@ -88,7 +90,7 @@ def stat(ur, _type):
         r = stat.find("span", "ProfileNav-value")["data-count"]
     except AttributeError:
         r = "0"
-    return r
+    return int(r)
 
 def media(ur):
     logme.debug(__name__+':media')
